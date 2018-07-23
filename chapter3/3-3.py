@@ -1,29 +1,31 @@
 import tensorflow as tf
 
+# input
 x_data = [1,2,3]
 y_data = [1,2,3]
 
-
+# 그래프 생성
 W = tf.Variable(tf.random_uniform([1] , -1.0 , 1.0))
 b = tf.Variable(tf.random_uniform([1] , -1.0 , 1.0))
 
 X = tf.placeholder(tf.float32 , name="X")
 Y = tf.placeholder(tf.float32 , name="Y")
 
-hypothesis = W * W + b
+hypothesis = W * X + b
 
+# loss 계산+최적화
 cost = tf.reduce_mean(tf.square(hypothesis - Y))
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1)
 train_op = optimizer.minimize(cost)
 
-
+# 학습 시작
 with tf.Session() as sess:
-    sess.run(tf.global_varialbes_initializer())
+    sess.run(tf.global_variables_initializer())
 
     for step in range(100):
-       _,cost_val = sess.run([train_op , cost], feed_dict={X:x_data , Y:y_data})
-       print(step, cost_val, sess.run(W), sess.run(b))
+       _,cost_val = sess.run([train_op,cost],feed_dict={X:x_data,Y:y_data})
+       print (step, cost_val, sess.run(W), sess.run(b))
 
-    print("\n====Test===")
-    print("X: 5 , Y:", sess.run(hypothesis, feed_dict={X:5})
-    print("X: 2.5 , Y:", sess.run(hypothesis, feed_dict={X:2.5})
+    print ("\n====Test===")
+    print ("X: 5 , Y:", sess.run(hypothesis, feed_dict={X:5}))
+    print ("X: 2.5 , Y:", sess.run(hypothesis, feed_dict={X:2.5}))
