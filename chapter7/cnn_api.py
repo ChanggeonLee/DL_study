@@ -51,4 +51,4 @@ print('최적화 완료')
 is_correct = tf.equel(tf.argmax(model, 1), tf.argmax(Y,1))
 accuracy = tf.reduce_mean(tf.cast(is_correct, tf.float32))
 
-print ('정확도:' , sess.run(accuracy, feed_dict={X:mnist.test.images.reshape(-1,28,28,1), Y:mnist.test.lables, is_training:False}))
+print ('정확도:' , sess.run(accuracy, feed_dict={X:mnist.test.images.reshape(-1,28,28,1), Y:mnist.test.labels, is_training:False}))
