@@ -7,7 +7,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("./mnist/data", one_hot=True)
 
 # 옵션 설정
-total_epoch = 100
+total_epoch = 200
 batch_size = 100
 learning_rate = 0.0002
 n_hidden = 256
